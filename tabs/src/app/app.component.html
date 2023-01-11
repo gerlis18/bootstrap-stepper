@@ -1,0 +1,30 @@
+<div style="padding: 30px">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" (navChange)="onNavChange($event)" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>One</a>
+      <ng-template ngbNavContent>
+        <app-tab1 [form]="getStep('group1')"></app-tab1>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2" [disabled]="getStep('group1').invalid">
+      <a ngbNavLink>Two</a>
+      <ng-template ngbNavContent>
+        <app-tab2 [form]="getStep('group2')"></app-tab2>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+  <div class="mb-3">
+    <button class="btn btn-sm btn-outline-primary" (click)="previoisStep()">
+      Previous
+    </button>
+    <button [disabled]="getStepTest().invalid" class="btn btn-sm btn-outline-primary ms-2" (click)="nextStep()">
+      Next
+    </button>
+  </div>
+
+  <pre>Active: {{ active }}</pre>
+
+</div>
